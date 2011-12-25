@@ -13,8 +13,10 @@ email: me@example.com
 
 # blog configuration, uncomment to enable
 blog:
+  # How to call articles in the sidebar navigation
   title: Blog Posts
-  feed: true
+  # Show related posts
+  related: true
 
 # configuration for ehancements, uncomment to enable
 
