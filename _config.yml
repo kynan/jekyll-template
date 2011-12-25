@@ -14,7 +14,7 @@ email: me@example.com
 # blog configuration, uncomment to enable
 blog:
   # How to call articles in the sidebar navigation
-  title: Blog Posts
+  navtitle: Blog Posts
   # Show related posts
   related: true
 

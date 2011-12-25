@@ -6,7 +6,7 @@
 
 {% if site.blog %}
 #posts
-  %h2 {{ site.blog.title }}
+  %h2 {{ site.blog.navtitle }}
   %ul
     {% for post in site.posts %}
     %li
@@ -15,6 +15,7 @@
       %a{:href => "{{ post.url }}"} {{ post.title }}
     {% endfor %}
 {% endif %}
+
 #pages
   %h2 Pages
   %ul
