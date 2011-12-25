@@ -12,6 +12,7 @@ layout: nil
 		<priority>1.0</priority>
   </url>
 
+{% if site.blog %}
   {% for page in site.posts %}
   <url>
     <loc>http://{{ site.domain }}{{ page.url }}</loc>
@@ -24,6 +25,7 @@ layout: nil
     {% endif %}
   </url>
   {% endfor %}
+{% endif %}
 
   {% for page in site.html_pages %}
   <url>

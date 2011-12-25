@@ -11,6 +11,11 @@ title: My Blog Title
 author: Me
 email: me@example.com
 
+# blog configuration, uncomment to enable
+blog:
+  title: Blog Posts
+  feed: true
+
 # configuration for ehancements, uncomment to enable
 
 # feedburner:
