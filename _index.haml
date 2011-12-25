@@ -1,0 +1,26 @@
+:plain
+  ---
+  layout: default
+  description: A description about my blog homepage
+  ---
+
+{% if site.blog %}
+#posts
+  %h2 {{ site.blog.title }}
+  %ul
+    {% for post in site.posts %}
+    %li
+      %span {{ post.date | date_to_string }}
+      \-
+      %a{:href => "{{ post.url }}"} {{ post.title }}
+    {% endfor %}
+{% endif %}
+#pages
+  %h2 Pages
+  %ul
+    {% for page in site.html_pages %}
+    {% if page.title %}
+    %li
+      %a{:href => "{{ page.url }}"} {{ page.title }}
+    {% endif %}
+    {% endfor %}

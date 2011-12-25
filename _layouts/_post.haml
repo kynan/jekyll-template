@@ -1,0 +1,37 @@
+:plain
+  ---
+  layout: default
+  ---
+
+{% if page.date %}
+.postdate> Posted on {{ page.date | date_to_string }}{% if page.last_updated %}, last updated on {{ page.last_updated | date_to_string }}{% endif %}
+{% endif %}
+.post
+  {{ content }}
+#related
+  %h2 Related Posts
+  %ul.posts
+    {% for post in site.related_posts limit:5 %}
+    %li
+      %span {{ post.date | date_to_string }}
+      \-
+      %a{:href => "{{ post.url }}"} {{ post.title }}
+    {% endfor %}
+{% if site.disqus %}
+#comments
+  %h2 Comments
+  #disqus_thread
+  :javascript
+    var disqus_identifier = "{{ page.url }}";
+    (function() {
+     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+     dsq.src = 'http://{{ site.disqus.id }}.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  %noscript
+    Please enable JavaScript to view the
+    %a{:href => "http://disqus.com/?ref_noscript={{ site.disqus.id }}"} comments powered by Disqus.
+  %a.dsq-brlink{:href => "http://disqus.com"}
+    blog comments powered by
+    %span.logo-disqus Disqus
+{% endif %}

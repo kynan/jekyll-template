@@ -1,0 +1,38 @@
+!!!
+%html
+  %head
+    %title {% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}
+    {% if page.description %}
+    %meta{:content => "{{ page.description }}", :name => "description"}/
+    {% endif %}
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %link{:href => "/stylesheets/screen.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+    {% if site.feedburner %}
+    %link{:href => "http://feeds.feedburner.com/{{ site.feedburner.id }}", :rel => "alternate", :title => "{{ site.title }}", :type => "application/atom+xml"}/
+    {% endif %}
+    {% if site.google_analytics %}
+    /google analytics async
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '{{ site.google_analytics.account }}']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    {% endif %}
+  %body
+    #page
+      #header
+        %a{:href => "/"}
+          %h1 {{ site.title }}
+      #body
+        {% if page.title %}
+        %h1 {{ page.title }}
+        {% endif %}
+        {{ content }}
+    {% if site.github %}
+    %a{:href => "http://github.com/{{ site.github.username }}"}
+      %img{:alt => "Fork me on GitHub", :src => "http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png", :style => "position: absolute; top: 0; right: 0; border: 0;"}/
+    {% endif %}

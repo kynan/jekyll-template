@@ -1,5 +1,7 @@
 task :default => :server
 
+LAYOUT_SRC = FileList.new('_layouts/*.haml', '_index.haml')
+
 desc 'Clean up generated site'
 task :clean do
   cleanup
@@ -7,13 +9,13 @@ end
 
 desc 'Build site with Jekyll'
 task :build => :clean do
+  convert
   compass
   jekyll
 end
 
 desc 'Start server with --auto'
-task :server => :clean do
-  compass
+task :server => :build do
   jekyll('--server --auto')
 end
 
@@ -53,7 +55,14 @@ task :check_links do
 end
 
 def cleanup
-  sh 'rm -rf _site'
+  sh 'rm -rf _site *.html _layouts/*.html'
+end
+
+def convert
+  LAYOUT_SRC.existing().each do |l|
+    lnew=File.dirname(l)+File::SEPARATOR+File.basename(l, 'haml')[1..-1]+'html'
+    sh %{ haml -E utf-8 #{l} #{lnew} }
+  end
 end
 
 def jekyll(opts = '')
